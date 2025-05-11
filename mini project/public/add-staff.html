@@ -280,32 +280,32 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">First Name</label>
-                                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <input type="text" name="firstName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Last Name</label>
-                                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <input type="text" name="lastName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                                        <input type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <input type="date" name="dateOfBirth" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Gender</label>
-                                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <select name="gender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                             <option value="">Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="other">Other</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Email</label>
-                                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <input type="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-                                        <input type="tel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <input type="tel" name="phoneNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                     </div>
                                 </div>
                             </div>
@@ -316,39 +316,39 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Position</label>
-                                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <select name="position" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                             <option value="">Select Position</option>
-                                            <option value="correctional_officer">Correctional Officer</option>
-                                            <option value="medical_staff">Medical Staff</option>
-                                            <option value="psychologist">Psychologist</option>
-                                            <option value="social_worker">Social Worker</option>
-                                            <option value="administrator">Administrator</option>
-                                            <option value="security_officer">Security Officer</option>
-                                            <option value="counselor">Counselor</option>
+                                            <option value="Correctional Officer">Correctional Officer</option>
+                                            <option value="Medical Staff">Medical Staff</option>
+                                            <option value="Psychologist">Psychologist</option>
+                                            <option value="Social Worker">Social Worker</option>
+                                            <option value="Administrator">Administrator</option>
+                                            <option value="Security Officer">Security Officer</option>
+                                            <option value="Counselor">Counselor</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Department</label>
-                                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <select name="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                             <option value="">Select Department</option>
-                                            <option value="security">Security</option>
-                                            <option value="healthcare">Healthcare</option>
-                                            <option value="mental_health">Mental Health</option>
-                                            <option value="rehabilitation">Rehabilitation</option>
-                                            <option value="administration">Administration</option>
+                                            <option value="Security">Security</option>
+                                            <option value="Healthcare">Healthcare</option>
+                                            <option value="Mental Health">Mental Health</option>
+                                            <option value="Rehabilitation">Rehabilitation</option>
+                                            <option value="Administration">Administration</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Employee ID</label>
-                                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" placeholder="e.g., ST-2023-XXX" required>
+                                        <input type="text" name="employeeId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" placeholder="e.g., ST-2023-XXX" required>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Hire Date</label>
-                                        <input type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <input type="date" name="hireDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Employment Type</label>
-                                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <select name="employmentType" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                             <option value="">Select Employment Type</option>
                                             <option value="full_time">Full Time</option>
                                             <option value="part_time">Part Time</option>
@@ -358,11 +358,11 @@
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Salary</label>
-                                        <input type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <input type="number" name="salary" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Shift</label>
-                                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <select name="shift" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
                                             <option value="">Select Shift</option>
                                             <option value="Morning">Morning</option>
                                             <option value="Afternoon">Afternoon</option>
@@ -378,7 +378,7 @@
                                 <div class="grid grid-cols-1 gap-6">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Education</label>
-                                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <select name="education" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                             <option value="">Select Education Level</option>
                                             <option value="high_school">High School</option>
                                             <option value="associate">Associate Degree</option>
@@ -391,19 +391,19 @@
                                         <label class="block text-sm font-medium text-gray-700">Certifications</label>
                                         <div class="space-y-2">
                                             <div class="flex items-center">
-                                                <input type="checkbox" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
+                                                <input type="checkbox" name="certifications" value="First Aid" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
                                                 <label class="ml-2 block text-sm text-gray-900">First Aid</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input type="checkbox" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
+                                                <input type="checkbox" name="certifications" value="CPR" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
                                                 <label class="ml-2 block text-sm text-gray-900">CPR</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input type="checkbox" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
+                                                <input type="checkbox" name="certifications" value="Security Clearance" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
                                                 <label class="ml-2 block text-sm text-gray-900">Security Clearance</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input type="checkbox" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
+                                                <input type="checkbox" name="certifications" value="Specialized Training" class="h-4 w-4 text-prison-blue focus:ring-prison-blue border-gray-300 rounded" />
                                                 <label class="ml-2 block text-sm text-gray-900">Specialized Training</label>
                                             </div>
                                         </div>
@@ -417,19 +417,19 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Contact Name</label>
-                                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required />
+                                        <input type="text" name="emergencyContactName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required />
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Relationship</label>
-                                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required />
+                                        <input type="text" name="emergencyContactRelationship" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required />
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Contact Phone</label>
-                                        <input type="tel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required />
+                                        <input type="tel" name="emergencyContactPhone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required />
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Contact Email</label>
-                                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" />
+                                        <input type="email" name="emergencyContactEmail" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" />
                                     </div>
                                 </div>
                             </div>
@@ -440,11 +440,11 @@
                                 <div class="grid grid-cols-1 gap-6">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Notes</label>
-                                        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" rows="3"></textarea>
+                                        <textarea name="notes" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" rows="3"></textarea>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Special Requirements</label>
-                                        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" rows="3"></textarea>
+                                        <textarea name="specialRequirements" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -482,6 +482,120 @@
                 icon.classList.toggle("transform");
                 icon.classList.toggle("rotate-180");
             });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Disable submit button and show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Adding Staff...';
+
+            try {
+                // Get form data
+                const formData = {
+                    firstName: document.querySelector('input[name="firstName"]').value,
+                    lastName: document.querySelector('input[name="lastName"]').value,
+                    dateOfBirth: document.querySelector('input[name="dateOfBirth"]').value,
+                    gender: document.querySelector('select[name="gender"]').value.toLowerCase(),
+                    email: document.querySelector('input[name="email"]').value,
+                    phone: document.querySelector('input[name="phoneNumber"]').value,
+                    role: document.querySelector('select[name="position"]').value,
+                    department: document.querySelector('select[name="department"]').value,
+                    employeeId: document.querySelector('input[name="employeeId"]').value,
+                    hireDate: document.querySelector('input[name="hireDate"]').value,
+                    employmentType: document.querySelector('select[name="employmentType"]').value.toLowerCase().replace(' ', '_'),
+                    salary: parseFloat(document.querySelector('input[name="salary"]').value),
+                    shift: document.querySelector('select[name="shift"]').value,
+                    education: document.querySelector('select[name="education"]').value.toLowerCase().replace(' ', '_'),
+                    certifications: Array.from(document.querySelectorAll('input[name="certifications"]:checked')).map(cb => cb.value),
+                    emergencyContact: {
+                        name: document.querySelector('input[name="emergencyContactName"]').value,
+                        relationship: document.querySelector('input[name="emergencyContactRelationship"]').value,
+                        phone: document.querySelector('input[name="emergencyContactPhone"]').value,
+                        email: document.querySelector('input[name="emergencyContactEmail"]').value
+                    },
+                    notes: document.querySelector('textarea[name="notes"]').value,
+                    specialRequirements: document.querySelector('textarea[name="specialRequirements"]').value,
+                    status: 'Active' // Default status for new staff
+                };
+
+                // Validate required fields
+                const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'role', 'hireDate'];
+                const missingFields = requiredFields.filter(field => !formData[field]);
+                
+                if (missingFields.length > 0) {
+                    throw new Error(`Please fill in all required fields: ${missingFields.join(', ')}`);
+                }
+
+                // Validate email format
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(formData.email)) {
+                    throw new Error('Please enter a valid email address');
+                }
+
+                // Validate phone number format
+                const phoneRegex = /^\+?[\d\s-]{10,}$/;
+                if (!phoneRegex.test(formData.phone)) {
+                    throw new Error('Please enter a valid phone number');
+                }
+
+                console.log('Sending data:', formData); // Debug log
+
+                const response = await fetch('http://localhost:3000/api/staff', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded';
+                    successMessage.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>Staff member added successfully!</span>
+                        </div>
+                    `;
+                    document.body.appendChild(successMessage);
+
+                    // Remove success message after 3 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                        window.location.href = 'staff.html'; // Redirect to staff list
+                    }, 3000);
+                } else {
+                    throw new Error(result.message || 'Failed to add staff member');
+                }
+            } catch (error) {
+                // Show error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded';
+                errorMessage.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        <span>${error.message || 'Something went wrong. Please try again.'}</span>
+                    </div>
+                `;
+                document.body.appendChild(errorMessage);
+
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 5000);
+            } finally {
+                // Reset submit button
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            }
         });
     </script>
 </body>

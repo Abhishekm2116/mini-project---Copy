@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Prisoner - Prison Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Edit Prisoner Details</h1>
+                <a href="prisoners.html" class="text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to List
+                </a>
+            </div>
+
+            <form id="editPrisonerForm" class="space-y-6">
+                <input type="hidden" id="prisonerId">
+                
+                <!-- Personal Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Personal Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="dateOfBirth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                            <select id="gender" name="gender" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Criminal Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Criminal Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="crime" class="block text-sm font-medium text-gray-700">Crime</label>
+                            <input type="text" id="crime" name="crime" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="sentence" class="block text-sm font-medium text-gray-700">Sentence (years)</label>
+                            <input type="number" id="sentence" name="sentence" required min="0"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="severity" class="block text-sm font-medium text-gray-700">Severity</label>
+                            <select id="severity" name="severity" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assignment Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Assignment Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="cellNumber" class="block text-sm font-medium text-gray-700">Cell Number</label>
+                            <input type="text" id="cellNumber" name="cellNumber" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="admissionDate" class="block text-sm font-medium text-gray-700">Admission Date</label>
+                            <input type="date" id="admissionDate" name="admissionDate" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Additional Information</h2>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div>
+                            <label for="notes" class="block text-sm font-medium text-gray-700">Notes</label>
+                            <textarea id="notes" name="notes" rows="3"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex justify-end space-x-3">
+                    <a href="prisoners.html" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Cancel
+                    </a>
+                    <button type="submit" id="submitButton"
+                        class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Update Prisoner
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to load prisoner data
+        async function loadPrisonerData() {
+            try {
+                // Get prisoner ID from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const prisonerId = urlParams.get('id');
+                
+                if (!prisonerId) {
+                    throw new Error('No prisoner ID provided');
+                }
+
+                // Fetch prisoner data
+                const response = await fetch(`http://localhost:3000/api/prisoners/${prisonerId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch prisoner data');
+                }
+
+                const prisoner = await response.json();
+                console.log('Fetched prisoner data:', prisoner);
+
+                // Set form values
+                document.getElementById('prisonerId').value = prisoner._id;
+                document.getElementById('firstName').value = prisoner.firstName || '';
+                document.getElementById('lastName').value = prisoner.lastName || '';
+                document.getElementById('dateOfBirth').value = prisoner.dateOfBirth ? new Date(prisoner.dateOfBirth).toISOString().split('T')[0] : '';
+                document.getElementById('gender').value = prisoner.gender?.toLowerCase() || 'male';
+                document.getElementById('crime').value = prisoner.crime || '';
+                document.getElementById('sentence').value = prisoner.sentence || '';
+                document.getElementById('severity').value = prisoner.severity || 'medium';
+                document.getElementById('cellNumber').value = prisoner.cellNumber || '';
+                document.getElementById('admissionDate').value = prisoner.admissionDate ? new Date(prisoner.admissionDate).toISOString().split('T')[0] : '';
+                document.getElementById('notes').value = prisoner.notes || '';
+
+            } catch (error) {
+                console.error('Error loading prisoner data:', error);
+                alert('Error loading prisoner data. Please try again.');
+                window.location.href = 'prisoners.html';
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('editPrisonerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Updating...';
+
+            try {
+                const prisonerId = document.getElementById('prisonerId').value;
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    dateOfBirth: document.getElementById('dateOfBirth').value,
+                    gender: document.getElementById('gender').value,
+                    crime: document.getElementById('crime').value,
+                    sentence: parseInt(document.getElementById('sentence').value),
+                    severity: document.getElementById('severity').value,
+                    cellNumber: document.getElementById('cellNumber').value,
+                    admissionDate: document.getElementById('admissionDate').value,
+                    notes: document.getElementById('notes').value
+                };
+
+                console.log('Submitting prisoner data:', {
+                    id: prisonerId,
+                    data: formData
+                });
+
+                const response = await fetch(`http://localhost:3000/api/prisoners/${prisonerId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                console.log('Server response status:', response.status);
+                console.log('Server response headers:', Object.fromEntries(response.headers.entries()));
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => null);
+                    console.error('Server error details:', errorData);
+                    throw new Error(`Failed to update prisoner: ${response.status} ${response.statusText}${errorData ? ` - ${JSON.stringify(errorData)}` : ''}`);
+                }
+
+                const updatedPrisoner = await response.json();
+                console.log('Successfully updated prisoner:', updatedPrisoner);
+
+                // Show success message
+                alert('Prisoner updated successfully');
+                window.location.href = 'prisoners.html';
+
+            } catch (error) {
+                console.error('Error updating prisoner:', error);
+                alert(`Error updating prisoner: ${error.message}`);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Update Prisoner';
+            }
+        });
+
+        // Load prisoner data when page loads
+        document.addEventListener('DOMContentLoaded', loadPrisonerData);
+    </script>
+</body>
+</html> 

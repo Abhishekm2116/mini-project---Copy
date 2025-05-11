@@ -5,9 +5,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const apiRoutes = require('./routes/api');
-const prisonsRouter = require('./routes/prisons');
-const prisonersRouter = require('./routes/prisoners');
+const apiRoutes = require('./server/routes/api');
+const prisonersRouter = require('./server/routes/prisoners');
 const axios = require('axios');
 
 // Set default environment variables if not present
@@ -27,14 +26,12 @@ const corsOptions = {
     optionsSuccessStatus: 204
 };
 
-
 // Update the CORS configuration in server.js
-
 app.use(cors(corsOptions));
 
 // Add specific OPTIONS handler for the problematic endpoint
 app.options('/ai/prompts', cors(corsOptions));
-app.options('/api/aitopia', cors(corsOptions)); // Added OPTIONS handler for /api/aitopia
+app.options('/api/aitopia', cors(corsOptions));
 
 // Middleware
 app.use(express.json());
@@ -54,7 +51,6 @@ app.use('/css', express.static(path.join(__dirname, 'public/css')));
 
 // API Routes
 app.use('/api', apiRoutes);
-app.use('/api/prisons', prisonsRouter);
 app.use('/api/prisoners', prisonersRouter);
 
 // Add this after your CORS configuration
@@ -116,11 +112,6 @@ app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Remove or comment out the admin-dashboard route since we're not using it anymore
-// app.get('/admin-dashboard', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'admin-dashboard.html'));
-// });
-
 app.get('/visitor-dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'visitor-dashboard.html'));
 });
@@ -138,7 +129,7 @@ const connectDB = async () => {
         console.log('Connected to MongoDB successfully');
 
         // Create a default prison if none exists
-        const Prison = require('./models/Prison');
+        const Prison = require('./server/models/Prison');
         const prisonCount = await Prison.countDocuments();
         if (prisonCount === 0) {
             console.log('Creating default prison...');

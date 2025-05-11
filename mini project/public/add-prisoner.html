@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Add New Prisoner - Prison Management System</title>
+    <title>Add/Edit Prisoner - Prison Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -238,7 +238,7 @@
                     <button class="md:hidden text-gray-500 focus:outline-none" id="mobile-menu-button">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h1 class="ml-3 text-xl font-semibold text-gray-900">Add New Prisoner</h1>
+                    <h1 class="ml-3 text-xl font-semibold text-gray-900" id="pageTitle">Add New Prisoner</h1>
                 </div>
                 <div class="flex items-center">
                     <button
@@ -272,128 +272,104 @@
             <div class="flex-1 overflow-auto p-4">
                 <div class="max-w-4xl mx-auto">
                     <div class="bg-white rounded-lg shadow-lg p-6">
-                        <form class="space-y-6" id="addPrisonerForm">
-                            <!-- Personal Information Section -->
-                            <div class="border-b border-gray-200 pb-6">
-                                <h2 class="text-lg font-medium text-gray-900 mb-4">Personal Information</h2>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <form id="prisonerForm" class="space-y-6">
+                            <input type="hidden" id="prisonerId">
+                            
+                            <!-- Personal Information -->
+                            <div class="space-y-4">
+                                <h2 class="text-xl font-semibold text-gray-900">Personal Information</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">First Name</label>
-                                        <input type="text" name="firstName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                                        <input type="text" id="firstName" name="firstName" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Last Name</label>
-                                        <input type="text" name="lastName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                        <input type="text" id="lastName" name="lastName" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                                        <input type="date" name="dateOfBirth" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
+                                        <label for="dateOfBirth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                                        <input type="date" id="dateOfBirth" name="dateOfBirth" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Gender</label>
-                                        <select name="gender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                            <option value="">Select Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Nationality</label>
-                                        <input type="text" name="nationality" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Prisoner ID</label>
-                                        <input type="text" name="prisonerId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Criminal Information Section -->
-                            <div class="border-b border-gray-200 pb-6">
-                                <h2 class="text-lg font-medium text-gray-900 mb-4">Criminal Information</h2>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Crime Committed</label>
-                                        <input type="text" name="crime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Sentence Duration</label>
-                                        <input type="text" name="sentence" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" placeholder="e.g., 5 years" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Sentence Start Date</label>
-                                        <input type="date" name="sentenceStartDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Case Number</label>
-                                        <input type="text" name="caseNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Assignment Information Section -->
-                            <div class="border-b border-gray-200 pb-6">
-                                <h2 class="text-lg font-medium text-gray-900 mb-4">Assignment Information</h2>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Block Assignment</label>
-                                        <select name="block" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                            <option value="">Select Block</option>
-                                            <option value="A">Block A - General Population</option>
-                                            <option value="B">Block B - Maximum Security</option>
-                                            <option value="C">Block C - Minimum Security</option>
-                                            <option value="D">Block D - Medical Wing</option>
-                                            <option value="E">Block E - Special Housing</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Cell Number</label>
-                                        <input type="text" name="cellNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" placeholder="e.g., 101" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Security Level</label>
-                                        <select name="securityLevel" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" required>
-                                            <option value="">Select Security Level</option>
-                                            <option value="minimum">Minimum Security</option>
-                                            <option value="medium">Medium Security</option>
-                                            <option value="maximum">Maximum Security</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Special Requirements</label>
-                                        <select name="specialRequirements" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" multiple>
-                                            <option value="medical">Medical Attention</option>
-                                            <option value="psychiatric">Psychiatric Care</option>
-                                            <option value="isolation">Isolation Required</option>
-                                            <option value="protection">Protection Required</option>
+                                        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                                        <select id="gender" name="gender" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Additional Information Section -->
-                            <div>
-                                <h2 class="text-lg font-medium text-gray-900 mb-4">Additional Information</h2>
-                                <div class="grid grid-cols-1 gap-6">
+                            <!-- Criminal Information -->
+                            <div class="space-y-4">
+                                <h2 class="text-xl font-semibold text-gray-900">Criminal Information</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Medical Conditions</label>
-                                        <textarea name="medicalConditions" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" rows="3"></textarea>
+                                        <label for="crime" class="block text-sm font-medium text-gray-700">Crime</label>
+                                        <input type="text" id="crime" name="crime" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Notes</label>
-                                        <textarea name="notes" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue" rows="3"></textarea>
+                                        <label for="sentence" class="block text-sm font-medium text-gray-700">Sentence (years)</label>
+                                        <input type="number" id="sentence" name="sentence" required min="0"
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                    </div>
+                                    <div>
+                                        <label for="severity" class="block text-sm font-medium text-gray-700">Severity</label>
+                                        <select id="severity" name="severity" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                            <option value="high">High</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="low">Low</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Assignment Information -->
+                            <div class="space-y-4">
+                                <h2 class="text-xl font-semibold text-gray-900">Assignment Information</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="cellNumber" class="block text-sm font-medium text-gray-700">Cell Number</label>
+                                        <input type="text" id="cellNumber" name="cellNumber" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                    </div>
+                                    <div>
+                                        <label for="admissionDate" class="block text-sm font-medium text-gray-700">Admission Date</label>
+                                        <input type="date" id="admissionDate" name="admissionDate" required
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="space-y-4">
+                                <h2 class="text-xl font-semibold text-gray-900">Additional Information</h2>
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div>
+                                        <label for="notes" class="block text-sm font-medium text-gray-700">Notes</label>
+                                        <textarea id="notes" name="notes" rows="3"
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Form Actions -->
-                            <div class="flex justify-end space-x-4">
-                                <button type="button" onclick="window.location.href='prisoners.html'" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prison-blue">
+                            <div class="flex justify-end space-x-3">
+                                <button type="button" onclick="window.location.href='prisoners.html'"
+                                    class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                     Cancel
                                 </button>
-                                <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-prison-blue hover:bg-prison-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-prison-blue">
-                                    Add Prisoner
+                                <button type="submit" id="submitButton"
+                                    class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    Save Prisoner
                                 </button>
                             </div>
                         </form>
@@ -404,6 +380,202 @@
     </div>
 
     <script>
+        // Function to load prisoner data
+        function loadPrisonerData() {
+            console.log('loadPrisonerData function called');
+            
+            // Check if localStorage is available
+            if (!window.localStorage) {
+                console.error('localStorage is not available in this browser');
+                alert('Error: Your browser does not support localStorage. Please use a modern browser.');
+                return;
+            }
+            
+            // Get all keys in localStorage
+            console.log('All localStorage keys:', Object.keys(localStorage));
+            
+            const prisonerDataString = localStorage.getItem('editPrisonerData');
+            console.log('Raw prisoner data from localStorage:', prisonerDataString);
+            
+            if (!prisonerDataString) {
+                console.error('No prisoner data found in localStorage');
+                alert('Error: No prisoner data found. Please try again.');
+                window.location.href = 'prisoners.html';
+                return;
+            }
+
+            try {
+                const prisonerData = JSON.parse(prisonerDataString);
+                console.log('Parsed prisoner data:', prisonerData);
+
+                if (!prisonerData || !prisonerData._id) {
+                    console.error('Invalid prisoner data format:', prisonerData);
+                    throw new Error('Invalid prisoner data format');
+                }
+
+                // Log all form field IDs that should exist
+                const expectedFieldIds = [
+                    'prisonerId', 'firstName', 'lastName', 'dateOfBirth',
+                    'gender', 'crime', 'sentence', 'severity',
+                    'cellNumber', 'admissionDate', 'notes'
+                ];
+                console.log('Expected form field IDs:', expectedFieldIds);
+                
+                // Check if all form fields exist
+                expectedFieldIds.forEach(fieldId => {
+                    const element = document.getElementById(fieldId);
+                    console.log(`Form field '${fieldId}' exists:`, !!element);
+                });
+
+                // Populate form fields
+                const formFields = {
+                    'prisonerId': prisonerData._id,
+                    'firstName': prisonerData.firstName,
+                    'lastName': prisonerData.lastName,
+                    'dateOfBirth': prisonerData.dateOfBirth,
+                    'gender': prisonerData.gender,
+                    'crime': prisonerData.crime,
+                    'sentence': prisonerData.sentence,
+                    'severity': prisonerData.severity,
+                    'cellNumber': prisonerData.cellNumber,
+                    'admissionDate': prisonerData.admissionDate,
+                    'notes': prisonerData.notes
+                };
+
+                console.log('Form fields to be populated:', formFields);
+
+                // Set each form field value
+                Object.entries(formFields).forEach(([fieldId, value]) => {
+                    const element = document.getElementById(fieldId);
+                    if (element) {
+                        const oldValue = element.value;
+                        element.value = value || '';
+                        console.log(`Set ${fieldId}:`, {
+                            oldValue: oldValue,
+                            newValue: value,
+                            success: element.value === (value || '')
+                        });
+                    } else {
+                        console.error(`Form field not found: ${fieldId}`);
+                    }
+                });
+
+                // Verify all fields were set correctly
+                const verificationResults = Object.entries(formFields).map(([fieldId, expectedValue]) => {
+                    const element = document.getElementById(fieldId);
+                    const actualValue = element ? element.value : null;
+                    return {
+                        fieldId,
+                        expectedValue,
+                        actualValue,
+                        matches: element && element.value === (expectedValue || '')
+                    };
+                });
+                
+                console.log('Field population verification:', verificationResults);
+                console.log('Form fields populated successfully');
+            } catch (error) {
+                console.error('Error loading prisoner data:', error);
+                alert('Error loading prisoner data. Please try again.');
+                window.location.href = 'prisoners.html';
+            }
+        }
+
+        // Function to initialize the page
+        function initializePage() {
+            console.log('Initializing page...');
+            
+            // Check if we're in edit mode
+            const urlParams = new URLSearchParams(window.location.search);
+            const isEditMode = urlParams.get('mode') === 'edit';
+            console.log('Edit mode:', isEditMode);
+
+            if (isEditMode) {
+                console.log('In edit mode, updating page title and button');
+                document.getElementById('pageTitle').textContent = 'Edit Prisoner';
+                document.getElementById('submitButton').textContent = 'Update Prisoner';
+                
+                // Load prisoner data immediately
+                console.log('Loading prisoner data...');
+                loadPrisonerData();
+            }
+
+            // Handle form submission
+            document.getElementById('prisonerForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                console.log('Form submission started');
+                
+                const submitButton = document.getElementById('submitButton');
+                submitButton.disabled = true;
+                submitButton.textContent = isEditMode ? 'Updating...' : 'Saving...';
+
+                try {
+                    const formData = {
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        dateOfBirth: document.getElementById('dateOfBirth').value,
+                        gender: document.getElementById('gender').value,
+                        crime: document.getElementById('crime').value,
+                        sentence: document.getElementById('sentence').value,
+                        severity: document.getElementById('severity').value,
+                        cellNumber: document.getElementById('cellNumber').value,
+                        admissionDate: document.getElementById('admissionDate').value,
+                        notes: document.getElementById('notes').value
+                    };
+
+                    console.log('Submitting form data:', formData);
+
+                    const url = isEditMode 
+                        ? `http://localhost:3000/api/prisoners/${document.getElementById('prisonerId').value}`
+                        : 'http://localhost:3000/api/prisoners';
+                    
+                    const method = isEditMode ? 'PUT' : 'POST';
+
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Failed to save prisoner: ${response.status} ${response.statusText}`);
+                    }
+
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded shadow-lg';
+                    successMessage.textContent = isEditMode ? 'Prisoner updated successfully' : 'Prisoner added successfully';
+                    document.body.appendChild(successMessage);
+
+                    // Clear localStorage if in edit mode
+                    if (isEditMode) {
+                        localStorage.removeItem('editPrisonerData');
+                    }
+
+                    // Redirect back to prisoners list after a short delay
+                    setTimeout(() => {
+                        window.location.href = 'prisoners.html';
+                    }, 1500);
+
+                } catch (error) {
+                    console.error('Error saving prisoner:', error);
+                    alert(`Error: ${error.message}. Please try again.`);
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = isEditMode ? 'Update Prisoner' : 'Save Prisoner';
+                }
+            });
+        }
+
+        // Initialize the page when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePage);
+        } else {
+            initializePage();
+        }
+
         // Mobile menu toggle
         document.getElementById("mobile-menu-button").addEventListener("click", function () {
             document.getElementById("mobile-sidebar").style.display = "block";
@@ -422,6 +594,5 @@
             });
         });
     </script>
-    <script src="js/add-prisoner.js"></script>
 </body>
 </html>

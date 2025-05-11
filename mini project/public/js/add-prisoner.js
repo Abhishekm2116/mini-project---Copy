@@ -44,8 +44,14 @@ async function handleFormSubmit(event) {
     }
 
     try {
+        // Show loading state
+        const submitButton = document.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Adding Prisoner...';
+
         // Send data to server
-        const response = await fetch('/api/prisoners', {
+        const response = await fetch('http://localhost:3000/api/prisoners', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -66,20 +72,49 @@ async function handleFormSubmit(event) {
             throw new Error(errorMessage);
         }
 
+        const result = await response.json();
+        console.log('Prisoner added successfully:', result);
+
         // Show success message
-        alert('Prisoner added successfully!');
+        const successMessage = document.createElement('div');
+        successMessage.className = 'fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50';
+        successMessage.innerHTML = `
+            <div class="flex items-center">
+                <i class="fas fa-check-circle mr-2"></i>
+                <span>Prisoner added successfully!</span>
+            </div>
+        `;
+        document.body.appendChild(successMessage);
         
-        // Redirect to prisoners list
-        window.location.href = '/prisoners.html';
+        // Redirect to prisoners list after a short delay
+        setTimeout(() => {
+            window.location.href = 'prisoners.html';
+        }, 1500);
     } catch (error) {
         console.error('Error adding prisoner:', error);
-        alert('Failed to add prisoner: ' + error.message);
+        
+        // Show error message
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50';
+        errorMessage.innerHTML = `
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                <span>${error.message || 'Failed to add prisoner. Please try again.'}</span>
+            </div>
+        `;
+        document.body.appendChild(errorMessage);
+        setTimeout(() => errorMessage.remove(), 5000);
+    } finally {
+        // Reset button state
+        const submitButton = document.querySelector('button[type="submit"]');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Add Prisoner';
     }
 }
 
 // Add event listener when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
+    const form = document.getElementById('addPrisonerForm');
     if (form) {
         form.addEventListener('submit', handleFormSubmit);
     }

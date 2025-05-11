@@ -55,6 +55,30 @@
         .btn-info:hover {
             background: #1565c0;
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .modal.show {
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -207,11 +231,9 @@
                 </div>
                 <div class="px-4 py-4 border-t border-gray-700">
                     <div class="flex items-center">
-                        <img
-                          class="w-10 h-10 rounded-full"
-                          src="https://randomuser.me/api/portraits/men/32.jpg"
-                          alt="User profile"
-                        />
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                            <span class="text-sm font-medium text-gray-600">AU</span>
+                        </div>
                         <div class="ml-3">
                             <p class="text-sm font-medium text-white">Admin User</p>
                             <p class="text-xs font-medium text-gray-400">Super Admin</p>
@@ -289,11 +311,9 @@
                               aria-haspopup="true"
                             >
                                 <span class="sr-only">Open user menu</span>
-                                <img
-                                  class="h-8 w-8 rounded-full"
-                                  src="https://randomuser.me/api/portraits/men/32.jpg"
-                                  alt=""
-                                />
+                                <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+                                    <span class="text-sm font-medium text-gray-600">AU</span>
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -374,6 +394,67 @@
         </div>
     </div>
 
+    <!-- Edit Prisoner Modal -->
+    <div id="editPrisonerModal" class="modal">
+        <div class="modal-content">
+            <div class="mt-3">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Edit Prisoner</h3>
+                <form id="editPrisonerForm" class="space-y-4">
+                    <input type="hidden" id="editPrisonerId">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input type="text" id="editFirstName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input type="text" id="editLastName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Age</label>
+                        <input type="number" id="editAge" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Gender</label>
+                        <select id="editGender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Cell Number</label>
+                        <input type="text" id="editCellNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Crime</label>
+                        <input type="text" id="editCrime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Sentence</label>
+                        <input type="text" id="editSentence" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Severity</label>
+                        <select id="editSeverity" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-prison-blue focus:ring-prison-blue">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-end space-x-3 mt-4">
+                        <button type="button" onclick="closeEditModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-prison-blue text-white rounded-md hover:bg-prison-dark focus:outline-none focus:ring-2 focus:ring-prison-blue">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
         // Mobile menu toggle
         document.getElementById("mobile-menu-button").addEventListener("click", function () {
@@ -392,6 +473,25 @@
                 icon.classList.toggle("rotate-180");
             });
         });
+
+        // Modal functions
+        function openEditModal() {
+            const modal = document.getElementById('editPrisonerModal');
+            modal.classList.add('show');
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById('editPrisonerModal');
+            modal.classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('editPrisonerModal');
+            if (event.target === modal) {
+                closeEditModal();
+            }
+        }
     </script>
     <script src="js/data.js"></script>
 </body>

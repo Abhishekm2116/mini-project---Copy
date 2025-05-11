@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Staff Member - Prison Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Edit Staff Member Details</h1>
+                <a href="staff.html" class="text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to List
+                </a>
+            </div>
+
+            <form id="editStaffForm" class="space-y-6">
+                <input type="hidden" id="staffId">
+                
+                <!-- Personal Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Personal Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="dateOfBirth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                            <select id="gender" name="gender" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employment Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Employment Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
+                            <select id="position" name="position" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <option value="Correctional Officer">Correctional Officer</option>
+                                <option value="Medical Staff">Medical Staff</option>
+                                <option value="Psychologist">Psychologist</option>
+                                <option value="Social Worker">Social Worker</option>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Security Officer">Security Officer</option>
+                                <option value="Counselor">Counselor</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
+                            <input type="text" id="department" name="department" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="hireDate" class="block text-sm font-medium text-gray-700">Hire Date</label>
+                            <input type="date" id="hireDate" name="hireDate" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="salary" class="block text-sm font-medium text-gray-700">Salary</label>
+                            <input type="number" id="salary" name="salary" required min="0"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Contact Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="email" name="email" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                            <input type="tel" id="phone" name="phone" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-900">Additional Information</h2>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div>
+                            <label for="notes" class="block text-sm font-medium text-gray-700">Notes</label>
+                            <textarea id="notes" name="notes" rows="3"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex justify-end space-x-3">
+                    <a href="staff.html" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Cancel
+                    </a>
+                    <button type="submit" id="submitButton"
+                        class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Update Staff Member
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to load staff data
+        async function loadStaffData() {
+            try {
+                // Get staff ID from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const staffId = urlParams.get('id');
+                
+                if (!staffId) {
+                    throw new Error('No staff ID provided');
+                }
+
+                // Fetch staff data
+                const response = await fetch(`http://localhost:3000/api/staff/${staffId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch staff data');
+                }
+
+                const staff = await response.json();
+                console.log('Fetched staff data:', staff);
+
+                // Set form values
+                document.getElementById('staffId').value = staff._id;
+                document.getElementById('firstName').value = staff.firstName || '';
+                document.getElementById('lastName').value = staff.lastName || '';
+                document.getElementById('dateOfBirth').value = staff.dateOfBirth ? new Date(staff.dateOfBirth).toISOString().split('T')[0] : '';
+                document.getElementById('gender').value = staff.gender?.toLowerCase() || 'male';
+                document.getElementById('position').value = staff.position || '';
+                document.getElementById('department').value = staff.department || '';
+                document.getElementById('hireDate').value = staff.hireDate ? new Date(staff.hireDate).toISOString().split('T')[0] : '';
+                document.getElementById('salary').value = staff.salary || '';
+                document.getElementById('email').value = staff.email || '';
+                document.getElementById('phone').value = staff.phone || '';
+                document.getElementById('notes').value = staff.notes || '';
+
+            } catch (error) {
+                console.error('Error loading staff data:', error);
+                alert('Error loading staff data. Please try again.');
+                window.location.href = 'staff.html';
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('editStaffForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Updating...';
+
+            try {
+                const staffId = document.getElementById('staffId').value;
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    dateOfBirth: document.getElementById('dateOfBirth').value,
+                    gender: document.getElementById('gender').value,
+                    role: document.getElementById('position').value,
+                    department: document.getElementById('department').value,
+                    hireDate: document.getElementById('hireDate').value,
+                    salary: parseInt(document.getElementById('salary').value),
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    notes: document.getElementById('notes').value
+                };
+
+                console.log('Submitting staff data:', {
+                    id: staffId,
+                    data: formData
+                });
+
+                const response = await fetch(`http://localhost:3000/api/staff/${staffId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                console.log('Server response status:', response.status);
+                console.log('Server response headers:', Object.fromEntries(response.headers.entries()));
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => null);
+                    console.error('Server error details:', errorData);
+                    throw new Error(`Failed to update staff member: ${response.status} ${response.statusText}${errorData ? ` - ${JSON.stringify(errorData)}` : ''}`);
+                }
+
+                const updatedStaff = await response.json();
+                console.log('Successfully updated staff member:', updatedStaff);
+
+                // Show success message
+                alert('Staff member updated successfully');
+                window.location.href = 'staff.html';
+
+            } catch (error) {
+                console.error('Error updating staff member:', error);
+                alert(`Error updating staff member: ${error.message}`);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Update Staff Member';
+            }
+        });
+
+        // Load staff data when page loads
+        document.addEventListener('DOMContentLoaded', loadStaffData);
+    </script>
+</body>
+</html> 

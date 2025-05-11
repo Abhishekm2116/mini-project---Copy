@@ -32,6 +32,25 @@ router.get('/prisoners', async (req, res) => {
     }
 });
 
+// Get single prisoner
+router.get('/prisoners/:id', async (req, res) => {
+    try {
+        console.log('Fetching prisoner:', req.params.id);
+        const prisoner = await Prisoner.findById(req.params.id);
+        
+        if (!prisoner) {
+            console.log('Prisoner not found');
+            return res.status(404).json({ message: 'Prisoner not found' });
+        }
+
+        console.log('Found prisoner:', prisoner);
+        res.json(prisoner);
+    } catch (error) {
+        console.error('Error fetching prisoner:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Staff routes
 router.get('/staff', async (req, res) => {
     try {
@@ -47,6 +66,25 @@ router.get('/staff', async (req, res) => {
     } catch (err) {
         console.error('Error fetching staff:', err);
         res.status(500).json({ message: err.message });
+    }
+});
+
+// Get single staff member
+router.get('/staff/:id', async (req, res) => {
+    try {
+        console.log('Fetching staff member:', req.params.id);
+        const staff = await Staff.findById(req.params.id);
+        
+        if (!staff) {
+            console.log('Staff member not found');
+            return res.status(404).json({ message: 'Staff member not found' });
+        }
+
+        console.log('Found staff member:', staff);
+        res.json(staff);
+    } catch (error) {
+        console.error('Error fetching staff member:', error);
+        res.status(500).json({ message: error.message });
     }
 });
 
@@ -121,6 +159,118 @@ router.post('/staff', [
         res.status(201).json(savedStaff);
     } catch (error) {
         console.error('Error adding staff member:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Delete staff member
+router.delete('/staff/:id', async (req, res) => {
+    try {
+        console.log('Attempting to delete staff member:', req.params.id);
+        const staff = await Staff.findById(req.params.id);
+        
+        if (!staff) {
+            console.log('Staff member not found');
+            return res.status(404).json({ message: 'Staff member not found' });
+        }
+
+        await Staff.deleteOne({ _id: req.params.id });
+        console.log('Staff member deleted successfully');
+        res.json({ message: 'Staff member deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting staff member:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Update staff member
+router.put('/staff/:id', [
+    body('firstName').notEmpty().withMessage('First name is required'),
+    body('lastName').notEmpty().withMessage('Last name is required'),
+    body('email').isEmail().withMessage('Valid email is required'),
+    body('phone').notEmpty().withMessage('Phone number is required'),
+    body('role').isIn([
+        'Correctional Officer',
+        'Medical Staff',
+        'Psychologist',
+        'Social Worker',
+        'Administrator',
+        'Security Officer',
+        'Counselor'
+    ]).withMessage('Valid role is required'),
+    body('department').optional(),
+    body('employeeId').optional(),
+    body('employmentType').optional().isIn(['full_time', 'part_time', 'contract', 'temporary']),
+    body('salary').optional().isNumeric(),
+    body('education').optional().isIn(['high_school', 'associate', 'bachelor', 'master', 'doctorate']),
+    body('certifications').optional(),
+    body('emergencyContact').optional(),
+    body('notes').optional(),
+    body('specialRequirements').optional()
+], async (req, res) => {
+    console.log('Updating staff member:', req.params.id);
+    console.log('Update data:', req.body);
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        console.log('Validation errors:', errors.array());
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const staff = await Staff.findById(req.params.id);
+        if (!staff) {
+            console.log('Staff member not found');
+            return res.status(404).json({ message: 'Staff member not found' });
+        }
+
+        // Update staff member
+        const updatedStaff = await Staff.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true, runValidators: true }
+        ).populate('prisonId');
+
+        console.log('Updated staff member:', updatedStaff);
+        res.json(updatedStaff);
+    } catch (error) {
+        console.error('Error updating staff member:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Update prisoner
+router.put('/prisoners/:id', [
+    body('firstName').notEmpty().withMessage('First name is required'),
+    body('lastName').notEmpty().withMessage('Last name is required'),
+    body('age').isInt({ min: 0 }).withMessage('Valid age is required'),
+    body('gender').isIn(['Male', 'Female', 'Other']).withMessage('Valid gender is required'),
+    body('cellNumber').notEmpty().withMessage('Cell number is required'),
+    body('crime').notEmpty().withMessage('Crime is required'),
+    body('sentence').notEmpty().withMessage('Sentence is required'),
+    body('severity').isIn(['high', 'medium', 'low']).withMessage('Valid severity is required')
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const prisoner = await Prisoner.findById(req.params.id);
+        if (!prisoner) {
+            return res.status(404).json({ message: 'Prisoner not found' });
+        }
+
+        // Update prisoner
+        const updatedPrisoner = await Prisoner.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true, runValidators: true }
+        );
+
+        res.json(updatedPrisoner);
+    } catch (error) {
+        console.error('Error updating prisoner:', error);
         res.status(500).json({ message: error.message });
     }
 });

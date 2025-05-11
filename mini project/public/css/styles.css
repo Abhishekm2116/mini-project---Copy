@@ -4,20 +4,31 @@
 
 /* Custom styles */
 .severity-badge {
-    @apply px-2 py-1 rounded text-sm font-medium;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 .severity-badge.high {
-    @apply bg-red-100 text-red-800;
+    background: #ffebee;
+    color: #c62828;
 }
 .severity-badge.medium {
-    @apply bg-orange-100 text-orange-800;
+    background: #fff3e0;
+    color: #ef6c00;
 }
 .severity-badge.low {
-    @apply bg-green-100 text-green-800;
+    background: #e8f5e9;
+    color: #2e7d32;
 }
 .btn-info {
-    @apply bg-blue-600 text-white border-none px-3 py-2 rounded cursor-pointer;
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 .btn-info:hover {
-    @apply bg-blue-700;
+    background: #1565c0;
 } 
