@@ -142,7 +142,7 @@
                 }
 
                 // Fetch staff data
-                const response = await fetch(`http://localhost:3000/api/staff/${staffId}`);
+                const response = await fetch(`http://localhost:3000/api/staff/by-employee-id/${staffId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch staff data');
                 }
@@ -156,7 +156,7 @@
                 document.getElementById('lastName').value = staff.lastName || '';
                 document.getElementById('dateOfBirth').value = staff.dateOfBirth ? new Date(staff.dateOfBirth).toISOString().split('T')[0] : '';
                 document.getElementById('gender').value = staff.gender?.toLowerCase() || 'male';
-                document.getElementById('position').value = staff.position || '';
+                document.getElementById('position').value = staff.role || '';
                 document.getElementById('department').value = staff.department || '';
                 document.getElementById('hireDate').value = staff.hireDate ? new Date(staff.hireDate).toISOString().split('T')[0] : '';
                 document.getElementById('salary').value = staff.salary || '';

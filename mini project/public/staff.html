@@ -451,13 +451,11 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const staffData = await response.json();
-                console.log('Fetched staff data:', staffData); // Debug log
+                console.log('Raw staff data:', JSON.stringify(staffData, null, 2));
                 
                 // Sort staff data in descending order by ID
                 const sortedStaffData = staffData.sort((a, b) => {
-                    const idA = a.employeeId || a._id;
-                    const idB = b.employeeId || b._id;
-                    return idB.localeCompare(idA);
+                    return b._id.localeCompare(a._id);
                 });
                 
                 displayStaffData(sortedStaffData);
@@ -492,6 +490,19 @@
             }
 
             staffData.forEach(staff => {
+                // Log the staff member data for debugging
+                console.log('Processing staff member:', {
+                    _id: staff._id,
+                    employeeId: staff.employeeId,
+                    name: `${staff.firstName} ${staff.lastName}`
+                });
+
+                // Ensure we have a valid MongoDB _id
+                if (!staff._id || typeof staff._id !== 'string' || staff._id.length !== 24) {
+                    console.error('Invalid staff ID:', staff._id);
+                    return;
+                }
+
                 const row = document.createElement('tr');
                 row.setAttribute('data-staff-id', staff._id);
                 row.innerHTML = `
@@ -510,7 +521,9 @@
                     </td>
                     <td class="px-4 py-2 whitespace-nowrap text-sm font-medium">
                         <a href="#" class="text-prison-blue hover:text-prison-dark mr-3" onclick="viewStaff('${staff._id}')">View</a>
-                        <a href="#" class="text-yellow-600 hover:text-yellow-900 mr-3" onclick="editStaff('${staff._id}')">Edit</a>
+                        <button onclick="editStaff('${staff._id}')" class="btn-info mr-2">
+                            <i class="fas fa-edit"></i>
+                        </button>
                         <a href="#" class="text-red-600 hover:text-red-900" onclick="deleteStaff('${staff._id}')">Remove</a>
                     </td>
                 `;
@@ -602,7 +615,9 @@
                         </td>
                         <td class="px-4 py-2 whitespace-nowrap text-sm font-medium">
                             <a href="#" class="text-prison-blue hover:text-prison-dark mr-3" onclick="viewStaff('${updatedStaff._id}')">View</a>
-                            <a href="#" class="text-yellow-600 hover:text-yellow-900 mr-3" onclick="editStaff('${updatedStaff._id}')">Edit</a>
+                            <button onclick="editStaff('${updatedStaff._id}')" class="btn-info mr-2">
+                                <i class="fas fa-edit"></i>
+                            </button>
                             <a href="#" class="text-red-600 hover:text-red-900" onclick="deleteStaff('${updatedStaff._id}')">Remove</a>
                         </td>
                     `;
@@ -632,16 +647,39 @@
             }
 
             try {
+                // Validate ID format
+                if (!id || typeof id !== 'string' || id.length !== 24) {
+                    throw new Error('Invalid staff ID format');
+                }
+
+                console.log('Attempting to delete staff member with ID:', id);
+                console.log('ID type:', typeof id);
+                console.log('ID length:', id.length);
+                
                 const response = await fetch(`http://localhost:3000/api/staff/${id}`, {
                     method: 'DELETE',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     }
                 });
 
-                if (!response.ok) {
+                console.log('Delete response status:', response.status);
+                console.log('Delete response headers:', Object.fromEntries(response.headers.entries()));
+
+                let errorMessage;
+                try {
                     const errorData = await response.json();
-                    throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+                    console.log('Error data:', errorData);
+                    errorMessage = errorData.message;
+                } catch (e) {
+                    console.log('Error parsing response:', e);
+                    // If response is not JSON, use status text
+                    errorMessage = response.statusText || 'Unknown error occurred';
+                }
+
+                if (!response.ok) {
+                    throw new Error(errorMessage || `HTTP error! status: ${response.status}`);
                 }
 
                 // Show success message

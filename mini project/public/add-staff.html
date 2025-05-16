@@ -315,16 +315,22 @@
                                 <h2 class="text-lg font-medium text-gray-900 mb-4">Employment Information</h2>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700">Position</label>
-                                        <select name="position" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                            <option value="">Select Position</option>
+                                        <label class="block text-sm font-medium text-gray-700">Role</label>
+                                        <select name="role" id="role" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                                            <option value="">Select Role</option>
+                                            <option value="Warden">Warden</option>
+                                            <option value="Deputy Warden">Deputy Warden</option>
                                             <option value="Correctional Officer">Correctional Officer</option>
                                             <option value="Medical Staff">Medical Staff</option>
-                                            <option value="Psychologist">Psychologist</option>
-                                            <option value="Social Worker">Social Worker</option>
-                                            <option value="Administrator">Administrator</option>
-                                            <option value="Security Officer">Security Officer</option>
                                             <option value="Counselor">Counselor</option>
+                                            <option value="Administrative Staff">Administrative Staff</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Prison</label>
+                                        <select name="prisonId" id="prisonId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                                            <option value="">Select Prison</option>
+                                            <!-- Populated by JS -->
                                         </select>
                                     </div>
                                     <div>
@@ -503,7 +509,7 @@
                     gender: document.querySelector('select[name="gender"]').value.toLowerCase(),
                     email: document.querySelector('input[name="email"]').value,
                     phone: document.querySelector('input[name="phoneNumber"]').value,
-                    role: document.querySelector('select[name="position"]').value,
+                    role: document.querySelector('select[name="role"]').value,
                     department: document.querySelector('select[name="department"]').value,
                     employeeId: document.querySelector('input[name="employeeId"]').value,
                     hireDate: document.querySelector('input[name="hireDate"]').value,
@@ -518,6 +524,7 @@
                         phone: document.querySelector('input[name="emergencyContactPhone"]').value,
                         email: document.querySelector('input[name="emergencyContactEmail"]').value
                     },
+                    prisonId: document.querySelector('select[name="prisonId"]').value,
                     notes: document.querySelector('textarea[name="notes"]').value,
                     specialRequirements: document.querySelector('textarea[name="specialRequirements"]').value,
                     status: 'Active' // Default status for new staff
@@ -597,6 +604,25 @@
                 submitButton.innerHTML = originalButtonText;
             }
         });
+
+        // Populate prisons dropdown
+        async function populatePrisons() {
+            try {
+                const response = await fetch('/api/prisons');
+                if (!response.ok) throw new Error('Failed to fetch prisons');
+                const prisons = await response.json();
+                const prisonSelect = document.getElementById('prisonId');
+                prisons.forEach(prison => {
+                    const option = document.createElement('option');
+                    option.value = prison._id;
+                    option.textContent = prison.name;
+                    prisonSelect.appendChild(option);
+                });
+            } catch (error) {
+                alert('Failed to load prisons. Please refresh the page.');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', populatePrisons);
     </script>
 </body>
 </html>

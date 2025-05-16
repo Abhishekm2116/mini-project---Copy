@@ -5,6 +5,7 @@ const Prisoner = require('../models/Prisoner');
 const Staff = require('../models/Staff');
 const Visit = require('../models/Visit');
 const { body, validationResult } = require('express-validator');
+const mongoose = require('mongoose');
 
 // Prison routes
 router.get('/prisons', async (req, res) => {
@@ -166,20 +167,71 @@ router.post('/staff', [
 // Delete staff member
 router.delete('/staff/:id', async (req, res) => {
     try {
-        console.log('Attempting to delete staff member:', req.params.id);
-        const staff = await Staff.findById(req.params.id);
+        console.log('DELETE /staff/:id - Request received');
+        console.log('Request params:', req.params);
+        console.log('Request headers:', req.headers);
         
-        if (!staff) {
-            console.log('Staff member not found');
-            return res.status(404).json({ message: 'Staff member not found' });
+        const staffId = req.params.id;
+        console.log('Staff ID to delete:', staffId);
+        console.log('ID type:', typeof staffId);
+        console.log('ID length:', staffId.length);
+        
+        // Validate ID format
+        if (!mongoose.Types.ObjectId.isValid(staffId)) {
+            console.log('Invalid staff ID format:', staffId);
+            return res.status(400).json({ 
+                message: 'Invalid staff ID format',
+                details: {
+                    id: staffId,
+                    type: typeof staffId,
+                    length: staffId.length
+                }
+            });
         }
 
-        await Staff.deleteOne({ _id: req.params.id });
+        console.log('Looking for staff member with ID:', staffId);
+        const staff = await Staff.findById(staffId);
+        
+        if (!staff) {
+            console.log('Staff member not found with ID:', staffId);
+            // Try to find any staff member to verify database connection
+            const anyStaff = await Staff.findOne();
+            console.log('Any staff member found:', anyStaff ? 'Yes' : 'No');
+            return res.status(404).json({ 
+                message: 'Staff member not found',
+                details: {
+                    id: staffId,
+                    databaseConnected: !!anyStaff
+                }
+            });
+        }
+
+        console.log('Found staff member:', staff);
+        const deleteResult = await Staff.deleteOne({ _id: staffId });
+        console.log('Delete result:', deleteResult);
+        
+        if (deleteResult.deletedCount === 0) {
+            console.log('No staff member was deleted');
+            return res.status(404).json({ message: 'No staff member was deleted' });
+        }
+
         console.log('Staff member deleted successfully');
-        res.json({ message: 'Staff member deleted successfully' });
+        res.json({ 
+            message: 'Staff member deleted successfully',
+            details: {
+                id: staffId,
+                deletedCount: deleteResult.deletedCount
+            }
+        });
     } catch (error) {
         console.error('Error deleting staff member:', error);
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ 
+            message: error.message,
+            details: {
+                name: error.name,
+                stack: error.stack
+            }
+        });
     }
 });
 

@@ -166,8 +166,43 @@ connectDB().then(() => {
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({
-        message: 'Something went wrong!',
-        error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    
+    // Set headers to ensure JSON response
+    res.setHeader('Content-Type', 'application/json');
+    
+    // Handle different types of errors
+    if (err.name === 'ValidationError') {
+        return res.status(400).json({
+            message: 'Validation Error',
+            errors: Object.values(err.errors).map(e => e.message)
+        });
+    }
+    
+    if (err.name === 'CastError') {
+        return res.status(400).json({
+            message: 'Invalid ID format',
+            error: err.message
+        });
+    }
+    
+    if (err.name === 'JsonWebTokenError') {
+        return res.status(401).json({
+            message: 'Invalid token',
+            error: err.message
+        });
+    }
+    
+    // Default error response
+    res.status(err.status || 500).json({
+        message: err.message || 'Something went wrong!',
+        error: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
+});
+
+// 404 handler - must be after all other routes
+app.use((req, res) => {
+    res.status(404).json({
+        message: 'Not Found',
+        error: `Cannot ${req.method} ${req.url}`
     });
 });
